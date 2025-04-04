@@ -1,2 +1,65 @@
 <h1>{{title}}</h1>
 <p>{{message}}</p>
+<h1>🧪 Unit Testing Demo - To-Do API</h1>
+
+<section>
+    <h2>📋 Project Overview</h2>
+    <p>This demo shows how to build a simple To-Do API with <strong>Express.js</strong> and test it using <strong>Jest</strong> and <strong>Supertest</strong>.</p>
+    <ul>
+        <li>Create, Read, Update, and Delete (CRUD) operations for To-Dos</li>
+        <li>Unit tests for each operation</li>
+        <li>Test automation using Jest</li>
+    </ul>
+</section>
+
+<section>
+    <h2>🧑‍💻 Sample API Code (todo.js)</h2>
+    <pre><code>
+router.post("/", (req, res) => {
+    const { task } = req.body;
+    if (!task) return res.status(400).json({ error: "Task is required" });
+    const newTodo = { id: idCounter++, task, completed: false };
+    todos.push(newTodo);
+    res.status(201).json(newTodo);
+});
+    </code></pre>
+</section>
+
+<section>
+    <h2>✅ Unit Test Example (todo.test.js)</h2>
+    <pre><code>
+it("should create a new to-do", async () => {
+    const res = await request(app).post("/todos").send({ task: "Learn Jest" });
+    expect(res.statusCode).toBe(201);
+    expect(res.body.task).toBe("Learn Jest");
+    expect(res.body.completed).toBe(false);
+});
+    </code></pre>
+</section>
+
+<section>
+    <h2>📊 Test Results</h2>
+    <p>Run this command in terminal:</p>
+    <pre><code>npm test</code></pre>
+    <p>Paste your output here or display a screenshot:</p>
+    <pre>
+PASS  ./todo.test.js
+✓ should create a new to-do (xx ms)
+✓ should return all to-dos (xx ms)
+✓ should update a to-do (xx ms)
+✓ should return 404 for updating a non-existent to-do (xx ms)
+✓ should delete a to-do (xx ms)
+✓ should return 404 for deleting a non-existent to-do (xx ms)
+    </pre>
+</section>
+
+<section>
+    <h2>📚 What’s Being Tested?</h2>
+    <ul>
+        <li><strong>POST</strong> - Ensures a new task is added and returns correct data</li>
+        <li><strong>GET</strong> - Checks all tasks are returned as an array</li>
+        <li><strong>PUT</strong> - Confirms status is updated (completed: true/false)</li>
+        <li><strong>DELETE</strong> - Verifies task is removed properly</li>
+        <li>Handles errors like missing task or invalid ID</li>
+    </ul>
+</section>
