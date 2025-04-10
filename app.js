@@ -11,11 +11,7 @@ const todosRouter = require("./routes/todos"); // New To-Do API Router
 const app = express();
 
 // View Engine Setup (Handlebars)
-app.engine("hbs", exphbs({
-    extname: "hbs",
-    defaultLayout: "main",  // Default layout file 'main.hbs' in the layouts folder
-    layoutsDir: path.join(__dirname, "views", "layouts")  // Explicitly set the layouts directory
-}));
+app.engine("hbs", exphbs.engine({ extname: "hbs" }));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
