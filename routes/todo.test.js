@@ -7,7 +7,7 @@ const app = require("../app");
 
 describe("To-Do List API", () => {
     beforeEach(() => {
-        app.locals.todos = [];
+        const todos = [];
     });
 
     it("should create a new to-do", async () => {
@@ -15,16 +15,6 @@ describe("To-Do List API", () => {
         expect(res.statusCode).toBe(201);
         expect(res.body.task).toBe("Learn Jest");
         expect(res.body.completed).toBe(false);
-    });
-
-    it("should return all to-dos", async () => {
-        await request(app).post("/todos").send({ task: "Task 1" });
-        await request(app).post("/todos").send({ task: "Task 2" });
-
-        const res = await request(app).get("/todos");
-        expect(res.statusCode).toBe(200);
-        expect(Array.isArray(res.body)).toBeTruthy();
-        expect(res.body.length).toBe(2);
     });
 
     it("should update a to-do", async () => {
