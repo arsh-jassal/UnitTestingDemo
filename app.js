@@ -3,13 +3,19 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const exphbs = require("express-handlebars"); // Add express-handlebars
 
 const indexRouter = require("./routes/index");
 const todosRouter = require("./routes/todos"); // New To-Do API Router
 
 const app = express();
 
-// View Engine Setup
+// View Engine Setup (Handlebars)
+app.engine("hbs", exphbs({
+    extname: "hbs",
+    defaultLayout: "main",  // Default layout file 'main.hbs' in the layouts folder
+    layoutsDir: path.join(__dirname, "views", "layouts")  // Explicitly set the layouts directory
+}));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 

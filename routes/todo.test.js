@@ -1,9 +1,13 @@
+//This code is a Jest test suite that checks if your To-Do List API is working correctly 
+// using the supertest library
+
+// all the possible tests are here
 const request = require("supertest");
-const app = require("./app");  // Ensure it's pointing to the correct file
+const app = require("../app");
 
 describe("To-Do List API", () => {
     beforeEach(() => {
-        app.locals.todos = []; // Reset To-Do List before each test
+        app.locals.todos = [];
     });
 
     it("should create a new to-do", async () => {

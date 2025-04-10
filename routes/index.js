@@ -1,3 +1,5 @@
+//This code defines a simple GET route for the homepage
+
 var express = require('express');
 var router = express.Router();
 

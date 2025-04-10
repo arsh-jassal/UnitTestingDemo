@@ -1,3 +1,6 @@
+//This code defines a To-Do List API using Express. 
+//It's an Express module that allows clients to create, read, update, and delete to-dos (CRUD)
+
 const express = require("express");
 const router = express.Router();
 
@@ -24,7 +27,7 @@ router.get("/", (req, res) => {
 router.put("/:id", (req, res) => {
     const todo = todos.find(t => t.id === parseInt(req.params.id));
     if (!todo) {
-        return res.status(404).json({ error: "Todo not found" });
+        return res.status(404).json({ error: "Todo not found" }); //if not found
     }
     todo.completed = req.body.completed ?? todo.completed;
     res.json(todo);
